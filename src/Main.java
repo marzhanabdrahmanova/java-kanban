@@ -19,15 +19,13 @@ public class Main {
         taskManager.createEpic(epic1);
         taskManager.createEpic(epic2);
 
+        Subtask subtask1 = new Subtask("Subtask 1", "Description of Subtask 1", Status.NEW, epic1.getId());
+        Subtask subtask2 = new Subtask("Subtask 2", "Description of Subtask 2", Status.IN_PROGRESS, epic1.getId());
+        taskManager.createSubtask(subtask1);
+        taskManager.createSubtask(subtask2);
 
-        Subtask subtask1 = new Subtask("Subtask 1", "Description of Subtask 1", Status.NEW);
-        Subtask subtask2 = new Subtask("Subtask 2", "Description of Subtask 2", Status.IN_PROGRESS);
-        taskManager.createSubtask(subtask1, epic1.getId());
-        taskManager.createSubtask(subtask2, epic1.getId());
-
-        Subtask subtask3 = new Subtask("Subtask 3", "Description of Subtask 3", Status.DONE);
-        taskManager.createSubtask(subtask3, epic2.getId());
-
+        Subtask subtask3 = new Subtask("Subtask 3", "Description of Subtask 3", Status.DONE, epic2.getId());
+        taskManager.createSubtask(subtask3);
 
         System.out.println("Tasks:");
         for (Task task : taskManager.getTasks()) {
@@ -55,7 +53,7 @@ public class Main {
 
         System.out.println("\nEpics after updates:");
         for (Epic epic : taskManager.getEpics()) {
-            System.out.println(epic.getName()+" status: "+epic.getStatus());
+            System.out.println(epic.getName() + " status: " + epic.getStatus());
         }
 
         taskManager.clearTasks();
