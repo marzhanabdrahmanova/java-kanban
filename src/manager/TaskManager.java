@@ -23,7 +23,7 @@ public class TaskManager {
     }
 
     public void clearTasks() {
-        this.tasks.clear();
+        tasks.clear();
     }
 
     public Task getTask(int taskId) {
@@ -86,8 +86,6 @@ public class TaskManager {
             for (Subtask subtask : epic.getSubtaskList()) {
                 subtasks.remove(subtask.getId());
             }
-            epic.getSubtaskList().clear();
-            updateEpicStatus(epic);
         }
     }
 
@@ -102,7 +100,6 @@ public class TaskManager {
             updateEpicStatus(epic);
         }
         subtasks.clear();
-//        subtaskToEpic.clear();
     }
 
     public Subtask getSubtask(int subtaskId) {
@@ -147,21 +144,33 @@ public class TaskManager {
 
     private void updateEpicStatus(Epic epic) {
         List<Subtask> subtaskList = epic.getSubtaskList();
+
         if (subtaskList.isEmpty()) {
             epic.setStatus(Status.NEW);
             return;
         }
 
-        Status status = subtaskList.get(0).getStatus();
+        boolean allNew = true;
+        boolean allDone = true;
 
         for (Subtask subtask : subtaskList) {
-            if (!subtask.getStatus().equals(status)) {
-                return;
+            if (!subtask.getStatus().equals(Status.NEW)) {
+                allNew = false;
+            }
+            if (!subtask.getStatus().equals(Status.DONE)) {
+                allDone = false;
             }
         }
 
-       epic.setStatus(status);
+        if (allNew) {
+            epic.setStatus(Status.NEW);
+        } else if (allDone) {
+            epic.setStatus(Status.DONE);
+        } else {
+            epic.setStatus(Status.IN_PROGRESS);
+        }
     }
+
 
     private int getNextId() {
         return nextId++;
