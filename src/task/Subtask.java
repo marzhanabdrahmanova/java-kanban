@@ -14,6 +14,9 @@ public class Subtask extends Task {
     }
 
     public void setEpicId(int epicId) {
+        if (this.epicId == epicId) {
+            throw new IllegalArgumentException("Subtask cannot set itself as its own epic");
+        }
         this.epicId = epicId;
     }
 }
