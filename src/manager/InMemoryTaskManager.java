@@ -9,19 +9,14 @@ import java.util.*;
 
 public class InMemoryTaskManager implements TaskManager {
 
-    private Map<Integer, Task> tasks = new HashMap<>();
+    private final Map<Integer, Task> tasks = new HashMap<>();
     private Map<Integer, Epic> epics = new HashMap<>();
-    private Map<Integer, Subtask> subtasks = new HashMap<>();
+    private final Map<Integer, Subtask> subtasks = new HashMap<>();
     private final HistoryManager historyManager;
-
-    public InMemoryTaskManager(HistoryManager manager) {
-        historyManager = manager;
-    }
 
     public InMemoryTaskManager() {
         historyManager = Managers.getDefaultHistory();
     }
-
 
     private int nextId = 0;
 
@@ -209,29 +204,5 @@ public class InMemoryTaskManager implements TaskManager {
 
     private int getNextId() {
         return nextId++;
-    }
-
-    private static void printAllTasks(TaskManager manager) {
-        System.out.println("Задачи:");
-        for (Task task : manager.getTasks()) {
-            System.out.println(task);
-        }
-        System.out.println("Эпики:");
-        for (Task epic : manager.getEpics()) {
-            System.out.println(epic);
-
-            for (Task task : manager.getEpic(epic.getId()).getSubtaskList()) {
-                System.out.println("--> " + task);
-            }
-        }
-        System.out.println("Подзадачи:");
-        for (Task subtask : manager.getSubtasks()) {
-            System.out.println(subtask);
-        }
-
-        System.out.println("История:");
-        for (Task task : manager.getHistory()) {
-            System.out.println(task);
-        }
     }
 }
