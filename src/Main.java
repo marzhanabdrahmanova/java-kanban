@@ -69,6 +69,28 @@ public class Main {
 
             System.out.println("\nSubtasks size after deletions:");
             System.out.println(taskManager.getSubtasks().size());
+
+            taskManager.getTask(task1.getId());
+            taskManager.getEpic(epic1.getId());
+            taskManager.getSubtask(subtask1.getId());
+
+            // Печать истории
+            printHistory(taskManager);
+
+            // Удаление задачи и проверка истории
+            taskManager.deleteTask(task1.getId());
+            printHistory(taskManager);
+
+            // Удаление эпика и проверка истории
+            taskManager.deleteEpic(epic1.getId());
+            printHistory(taskManager);
+    }
+
+        private static void printHistory(TaskManager taskManager) {
+                System.out.println("\nHistory:");
+                for (Task task : taskManager.getHistory()) {
+                        System.out.println(task.getName());
+                }
         }
     }
 

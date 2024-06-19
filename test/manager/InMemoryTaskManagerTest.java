@@ -13,12 +13,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class InMemoryTaskManagerTest {
 
-    public TaskManager taskManager;
+    private TaskManager taskManager;
 
     @BeforeEach
     public void beforeEach() {
-        TaskManager taskManager = Managers.getDefault();
-        this.taskManager = taskManager;
+        taskManager = Managers.getDefault();
         Task task1 = new Task("Task 1", "Description of Task 1", Status.NEW);
         Task task2 = new Task("Task 2", "Description of Task 2", Status.IN_PROGRESS);
         taskManager.createTask(task1);
@@ -36,7 +35,6 @@ class InMemoryTaskManagerTest {
 
         Subtask subtask3 = new Subtask("Subtask 3", "Description of Subtask 3", Status.DONE, epic2.getId());
         taskManager.createSubtask(subtask3);
-
     }
 
     @Test
