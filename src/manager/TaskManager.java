@@ -17,6 +17,8 @@ public interface TaskManager {
 
     Task updateTask(Task task);
 
+    void deleteTask(int taskId);
+
     // Epic
     List<Epic> getEpics();
 
