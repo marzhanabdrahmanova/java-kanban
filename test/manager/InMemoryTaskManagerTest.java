@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class InMemoryTaskManagerTest {
 
-    public TaskManager taskManager;
+    private TaskManager taskManager;
 
     @BeforeEach
     public void beforeEach() {
