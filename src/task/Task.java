@@ -2,6 +2,7 @@ package task;
 
 public class Task {
 
+
     private Integer id;
     private String name;
     private String description;
@@ -33,6 +34,7 @@ public class Task {
     public void setName(String name) {
         this.name = name;
     }
+
     public String getDescription() {
         return this.description;
     }
