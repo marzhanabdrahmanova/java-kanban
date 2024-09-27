@@ -1,4 +1,4 @@
-package task;
+package model;
 
 public class Subtask extends Task {
 
@@ -18,5 +18,10 @@ public class Subtask extends Task {
             throw new IllegalArgumentException("Subtask cannot set itself as its own epic");
         }
         this.epicId = epicId;
+    }
+
+    @Override
+    public TaskType getType() {
+        return TaskType.SUBTASK;
     }
 }

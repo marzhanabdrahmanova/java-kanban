@@ -1,11 +1,11 @@
-package manager;
+package service;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import task.Epic;
-import task.Status;
-import task.Subtask;
-import task.Task;
+import model.Epic;
+import model.Status;
+import model.Subtask;
+import model.Task;
 
 import java.io.File;
 import java.io.IOException;

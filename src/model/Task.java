@@ -1,4 +1,4 @@
-package task;
+package model;
 
 public class Task {
     private Integer id;
@@ -12,7 +12,7 @@ public class Task {
         this.status = status;
     }
 
-    public Task(String name, String description) {
+    public Task(String name, Status status, String description) {
         this.name = name;
         this.description = description;
     }
@@ -47,5 +47,9 @@ public class Task {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    public TaskType getType() {
+        return TaskType.TASK; // По умолчанию это обычная задача
     }
 }

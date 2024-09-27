@@ -1,6 +1,6 @@
-package manager;
+package service;
 
-import task.Task;
+import model.Task;
 
 import java.util.*;
 
@@ -13,8 +13,8 @@ public final class InMemoryHistoryManager implements HistoryManager {
     @Override
     public void add(Task task) {
         if (task != null) {
-            remove(task.getId());
-            linkLast(task);
+            remove(task.getId()); // Удаляем, если задача уже была в истории
+            linkLast(task); // Добавляем в конец истории
         }
     }
 
@@ -28,7 +28,7 @@ public final class InMemoryHistoryManager implements HistoryManager {
 
     @Override
     public List<Task> getHistory() {
-        return getTasks();
+        return getTasksFromHistory(); // Возвращаем историю задач
     }
 
     private void linkLast(Task task) {
@@ -61,7 +61,7 @@ public final class InMemoryHistoryManager implements HistoryManager {
         }
     }
 
-    private List<Task> getTasks() {
+    private List<Task> getTasksFromHistory() {
         List<Task> tasks = new ArrayList<>();
         Node currentNode = head;
         while (currentNode != null) {

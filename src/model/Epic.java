@@ -1,28 +1,33 @@
-package task;
+package model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Epic extends Task {
 
-    private final List<Subtask> subtaskList = new ArrayList<>();
+    private final Map<Integer, Subtask> subtaskMap = new HashMap<>();
 
     public Epic(String name, String description) {
         super(name, description, Status.NEW);
     }
 
-    public List<Subtask> getSubtaskList() {
-        return subtaskList;
+    public Map<Integer, Subtask> getSubtaskMap() {
+        return subtaskMap;
     }
 
     public void addSubtask(Subtask subtask) {
         if (this.getId().equals(subtask.getId())) {
             throw new IllegalArgumentException("Epic cannot add itself as a subtask");
         }
-        this.subtaskList.add(subtask);
+        subtaskMap.put(subtask.getId(), subtask);
     }
 
     public void deleteSubtask(Subtask subtask) {
-        this.subtaskList.remove(subtask);
+        subtaskMap.remove(subtask.getId());
+    }
+
+    @Override
+    public TaskType getType() {
+        return TaskType.EPIC;
     }
 }
