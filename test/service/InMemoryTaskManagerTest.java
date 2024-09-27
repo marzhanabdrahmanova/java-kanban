@@ -1,11 +1,11 @@
-package manager;
+package service;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import task.Epic;
-import task.Status;
-import task.Subtask;
-import task.Task;
+import model.Epic;
+import model.Status;
+import model.Subtask;
+import model.Task;
 
 import java.util.List;
 
@@ -132,12 +132,17 @@ class InMemoryTaskManagerTest {
     @Test
     void clearSubtasks() {
         taskManager.clearSubtasks();
+
+        // Проверяем, что все подзадачи удалены из менеджера
         List<Subtask> subtaskList = taskManager.getSubtasks();
         assertEquals(0, subtaskList.size());
+
+        // Проверяем, что в каждом эпике пустой Map подзадач
         for (Epic epic : taskManager.getEpics()) {
-            assertEquals(0, epic.getSubtaskList().size());
+            assertEquals(0, epic.getSubtaskMap().size()); // Используем getSubtaskMap для проверки
         }
     }
+
 
     @Test
     void getSubtask() {
@@ -169,8 +174,11 @@ class InMemoryTaskManagerTest {
         taskManager.deleteSubtask(4);
         assertNull(taskManager.getSubtask(4));
         Epic epic = taskManager.getEpic(2);
-        assertEquals(1, epic.getSubtaskList().size());
+
+        // Если subtaskList теперь Map, используйте .values().size() для проверки количества подзадач
+        assertEquals(1, epic.getSubtaskMap().values().size());
     }
+
 
     @Test
     void add() {

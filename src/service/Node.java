@@ -1,6 +1,6 @@
-package manager;
+package service;
 
-import task.Task;
+import model.Task;
 
 public class Node {
     private Task task;
