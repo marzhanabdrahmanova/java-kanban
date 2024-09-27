@@ -73,7 +73,7 @@ public class InMemoryTaskManager implements TaskManager {
         return new ArrayList<>(epics.values());
     }
 
-    public Map<Integer, Epic> getMapEpics(){
+    public Map<Integer, Epic> getMapEpics() {
         return epics;
     }
 
@@ -130,7 +130,7 @@ public class InMemoryTaskManager implements TaskManager {
         return new ArrayList<>(subtasks.values());
     }
 
-    public Map<Integer,Subtask> getSubtasksMap() {
+    public Map<Integer, Subtask> getSubtasksMap() {
         return subtasks;
     }
 

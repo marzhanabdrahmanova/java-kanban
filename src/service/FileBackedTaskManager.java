@@ -5,9 +5,7 @@ import model.*;
 
 import java.io.*;
 import java.nio.file.Files;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class FileBackedTaskManager extends InMemoryTaskManager {
 
@@ -81,16 +79,13 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
 
     private static void addTaskToManager(FileBackedTaskManager manager, Task task) {
         if (task instanceof Epic) {
-            manager.getMapEpics().put(task.getId(), (Epic) task); // Возможно, тут используется List, что вызывает проблему
+            manager.getMapEpics().put(task.getId(), (Epic) task);
         } else if (task instanceof Subtask) {
-            manager.getSubtasksMap().put(task.getId(), (Subtask) task); // Аналогично для подзадач
+            manager.getSubtasksMap().put(task.getId(), (Subtask) task);
         } else {
-            manager.getTasksMaps().put(task.getId(), task); // И здесь, если tasks — это List
+            manager.getTasksMaps().put(task.getId(), task);
         }
     }
-
-
-
 
 
     public static FileBackedTaskManager loadFromFile(File file) {
@@ -121,8 +116,6 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
         }
         return manager;
     }
-
-
 
 
     protected void save() {
@@ -199,5 +192,4 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
         task.setId(id);
         return task;
     }
-
 }
