@@ -1,9 +1,9 @@
-package manager;
+package service;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import task.Status;
-import task.Task;
+import model.Status;
+import model.Task;
 
 import java.util.List;
 
